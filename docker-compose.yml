@@ -18,6 +18,7 @@ services:
       environment:
         APP_ENV: 'dev'
         APP_DEBUG: 'true'
+        CURRENCY_LIST_SOURCE: 'cbr'
         DATABASE_URL: 'mysql://root:root@mysql:3306/crassula'
         VIRTUAL_HOST: 'crassula.loc'
 

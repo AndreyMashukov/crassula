@@ -1,0 +1,16 @@
+<ValCurs Date="01.01.2021" name="Foreign Currency Market">
+    <Valute ID="R01535">
+        <NumCode>578</NumCode>
+        <CharCode>NOK</CharCode>
+        <Nominal>10</Nominal>
+        <Name>Норвежских крон</Name>
+        <Value>86,4478</Value>
+    </Valute>
+    <Valute ID="R01020A">
+        <NumCode>944</NumCode>
+        <CharCode>AZN</CharCode>
+        <Nominal>1</Nominal>
+        <Name>Азербайджанский манат</Name>
+        <Value>43,4819</Value>
+    </Valute>
+</ValCurs>

@@ -1,0 +1,11 @@
+services:
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        public: true
+
+    test.cbr_deserializer: '@App\Service\Deserializer\CBRDeserializer'
+
+    test.ecb_deserializer: '@App\Service\Deserializer\ECBDeserializer'
+
+    test.deserializer_provider: '@App\Service\DeserializerProvider'
