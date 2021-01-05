@@ -2,6 +2,7 @@
 
 namespace App\Component\DTO;
 
+use App\Service\SourceConfiguration;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
@@ -60,4 +61,9 @@ class CBRRate extends Rate
      * @var int
      */
     protected int $nominal;
+
+    public static function getSource(): string
+    {
+        return SourceConfiguration::SOURCE_CBR;
+    }
 }

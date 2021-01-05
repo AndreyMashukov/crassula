@@ -52,3 +52,7 @@ services:
             - !tagged{tag: 'currency_list.deserializer', index_by: 'key', default_index_method: 'getSource'}
 
     GuzzleHttp\Client: ~
+
+    App\EventSubscriber\RateSubscriber:
+        arguments:
+            $debug: '%kernel.debug%'

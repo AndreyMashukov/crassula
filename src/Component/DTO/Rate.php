@@ -2,7 +2,9 @@
 
 namespace App\Component\DTO;
 
-class Rate
+use App\Service\SourceNameInterface;
+
+abstract class Rate implements SourceNameInterface
 {
     /**
      * @var string
@@ -33,6 +35,11 @@ class Rate
      * @var int
      */
     protected int $nominal;
+
+    /**
+     * @var null|\DateTimeInterface
+     */
+    private ?\DateTimeInterface $date = null;
 
     public function __construct(string $name, string $externalId, string $mainCurrency, string $secondaryCurrency, float $rate, int $nominal = 1)
     {
@@ -91,4 +98,31 @@ class Rate
     {
         return $this->nominal;
     }
+
+    /**
+     * @return null|\DateTimeInterface
+     */
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    /**
+     * @param null|\DateTimeInterface $date
+     *
+     * @return Rate
+     */
+    public function setDate(?\DateTimeInterface $date): self
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    public function getFinalRate(): float
+    {
+        return $this->getRate() / $this->getNominal();
+    }
+
+    abstract public static function getSource(): string;
 }

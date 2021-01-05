@@ -2,6 +2,7 @@
 
 namespace App\Component\DTO;
 
+use App\Service\SourceConfiguration;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
@@ -58,4 +59,9 @@ class ECBRate extends Rate
      * @var int
      */
     protected int $nominal = 1;
+
+    public static function getSource(): string
+    {
+        return SourceConfiguration::SOURCE_ECB;
+    }
 }

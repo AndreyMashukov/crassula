@@ -68,7 +68,7 @@ class CBRDeserializerTest extends KernelTestCase
         $collection = $this->serializer->deserialize($content, CBRCollection::class, 'xml', $context);
 
         $this->assertInstanceOf(CBRCollection::class, $collection);
-        $this->assertEquals(2, $collection->getRates()->count());
+        $this->assertEquals(5, $collection->getRates()->count());
         $first = $collection->getRates()->first();
         $this->assertInstanceOf(CBRRate::class, $first);
 
