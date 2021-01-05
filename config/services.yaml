@@ -20,6 +20,7 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
             - '../src/Tests/'
+            - '../src/Component/'
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
@@ -29,3 +30,13 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+
+    _instanceof:
+        App\Service\Deserializer\AbstractDeserializer:
+            tags: ['currency_list.deserializer']
+
+    App\Service\DeserializerProvider:
+        arguments:
+            - !tagged{tag: 'currency_list.deserializer', index_by: 'key', default_index_method: 'getSource'}
+            - '%env(CURRENCY_LIST_SOURCE)%'
