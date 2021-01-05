@@ -3,6 +3,7 @@
 namespace App\Service\Deserializer;
 
 use App\Component\DTO\CBRCollection;
+use App\Service\SourceConfiguration;
 
 class CBRDeserializer extends AbstractDeserializer
 {
@@ -18,6 +19,6 @@ class CBRDeserializer extends AbstractDeserializer
 
     public static function getSource(): string
     {
-        return self::SOURCE_CBR;
+        return SourceConfiguration::SOURCE_CBR;
     }
 }

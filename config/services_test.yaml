@@ -9,3 +9,5 @@ services:
     test.ecb_deserializer: '@App\Service\Deserializer\ECBDeserializer'
 
     test.deserializer_provider: '@App\Service\DeserializerProvider'
+
+    test.guzzle: '@GuzzleHttp\Client'

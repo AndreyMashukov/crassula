@@ -3,15 +3,12 @@
 namespace App\Service\Deserializer;
 
 use App\Component\DTO\CurrencyCollection;
+use App\Service\SourceNameInterface;
 use JMS\Serializer\DeserializationContext;
 use JMS\Serializer\SerializerInterface;
 
-abstract class AbstractDeserializer
+abstract class AbstractDeserializer implements SourceNameInterface
 {
-    public const SOURCE_ECB = 'ecb';
-
-    public const SOURCE_CBR = 'cbr';
-
     public const FORMAT_XML = 'xml';
 
     public const FORMAT_JSON = 'json';

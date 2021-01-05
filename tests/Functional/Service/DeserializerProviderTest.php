@@ -2,10 +2,10 @@
 
 namespace App\Tests\Functional\Service;
 
-use App\Service\Deserializer\AbstractDeserializer;
 use App\Service\Deserializer\CBRDeserializer;
 use App\Service\Deserializer\ECBDeserializer;
 use App\Service\DeserializerProvider;
+use App\Service\SourceConfiguration;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
@@ -29,8 +29,8 @@ class DeserializerProviderTest extends KernelTestCase
      */
     public function testShouldAllowToGetDeserializerBySource(): void
     {
-        $this->assertInstanceOf(ECBDeserializer::class, $this->provider->getBySource(AbstractDeserializer::SOURCE_ECB));
-        $this->assertInstanceOf(CBRDeserializer::class, $this->provider->getBySource(AbstractDeserializer::SOURCE_CBR));
+        $this->assertInstanceOf(ECBDeserializer::class, $this->provider->getBySource(SourceConfiguration::SOURCE_ECB));
+        $this->assertInstanceOf(CBRDeserializer::class, $this->provider->getBySource(SourceConfiguration::SOURCE_CBR));
     }
 
     /**
