@@ -1,0 +1,36 @@
+# Have you ever use it? Doc here: https://roadrunner.dev
+http:
+    address: :80
+    workers:
+        command: "php /srv/www/public/worker.php"
+        pool:
+            numWorkers: 2
+
+            # maximum jobs per worker, 0 - unlimited.
+            maxJobs:  0
+
+            # for how long worker is allowed to be bootstrapped.
+            allocateTimeout: 300
+
+            # amount of time given to the worker to gracefully destruct itself.
+            destroyTimeout:  60
+
+limit:
+    # check worker state each second
+    interval: 1
+
+    # custom watch configuration for each service
+    services:
+        # monitor HTTP workers
+        http:
+            # maximum allowed memory consumption per worker (soft)
+            maxMemory: 512
+
+            # maximum time to live for the worker (soft)
+            TTL: 0
+
+            # maximum allowed amount of time worker can spend in idle before being removed (for weak db connections, soft)
+            idleTTL: 0
+
+            # max_execution_time (brutal)
+            execTTL: 60

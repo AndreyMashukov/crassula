@@ -1,0 +1,65 @@
+version: '3.5'
+
+services:
+    proxy:
+      image: jwilder/nginx-proxy
+      volumes:
+        - /var/run/docker.sock:/tmp/docker.sock:ro
+        - .docker/proxy.conf:/etc/nginx/conf.d/proxy.conf
+
+      ports:
+        - '80:80'
+
+      networks:
+        - crassula
+
+    web-back: &web-back
+      build: '.'
+      environment:
+        APP_ENV: 'dev'
+        APP_DEBUG: 'true'
+        DATABASE_URL: 'mysql://root:root@mysql:3306/crassula'
+        VIRTUAL_HOST: 'crassula.loc'
+
+      volumes:
+        - ".:/srv/www"
+        - ".docker/etc/php/php-dev.ini:/usr/local/etc/php/conf.d/dev.ini"
+        - ".docker/etc/php/php-cli.ini:/usr/local/etc/php/conf.d/99-crasula.ini"
+        - '.docker/etc/roadrunner:/etc/roadrunner'
+
+      depends_on:
+        - mysql
+        - proxy
+
+      networks:
+        - crassula
+      restart: always
+
+    php:
+      <<: *web-back
+
+    mysql:
+      image: mysql:5.7
+      container_name: crassula_mysql
+      restart: always
+      ports:
+        - "3306:3306"
+      networks:
+        - crassula
+      environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: crassula
+        MYSQL_USER: crassula
+        MYSQL_PASSWORD: crassula
+        VIRTUAL_HOST: mysql.crassula.loc
+      volumes:
+        - mysql-data:/var/lib/mysql
+
+volumes:
+    mysql-data:
+        name: crassula_mysql_data
+
+
+networks:
+  crassula:
+    driver: bridge
