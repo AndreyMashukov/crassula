@@ -4,6 +4,8 @@ namespace App\Service\Deserializer;
 
 use App\Component\DTO\CurrencyCollection;
 use App\Component\DTO\ECBEnvelope;
+use App\Service\SourceConfiguration;
+use InvalidArgumentException;
 
 class ECBDeserializer extends AbstractDeserializer
 {
@@ -20,7 +22,7 @@ class ECBDeserializer extends AbstractDeserializer
     protected function cast(object $object): CurrencyCollection
     {
         if (!$object instanceof ECBEnvelope) {
-            throw new \InvalidArgumentException('Expected class: ' . ECBEnvelope::class);
+            throw new InvalidArgumentException('Expected class: ' . ECBEnvelope::class);
         }
 
         return $object->getContainer()->getCollection();
@@ -28,6 +30,6 @@ class ECBDeserializer extends AbstractDeserializer
 
     public static function getSource(): string
     {
-        return self::SOURCE_ECB;
+        return SourceConfiguration::SOURCE_ECB;
     }
 }
