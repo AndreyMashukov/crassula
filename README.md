@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/AndreyMashukov/crassula.svg?branch=main)](https://travis-ci.com/AndreyMashukov/crassula)
+
 # crassula
 
 Execute locally
