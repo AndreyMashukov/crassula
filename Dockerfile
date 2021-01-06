@@ -8,7 +8,7 @@ WORKDIR /srv/www
 COPY . /srv/www
 
 # Install Supervisor
-RUN apk update && apk add --no-cache supervisor
+RUN apk update && apk add --no-cache supervisor apache-ant
 
 # Copy Supervisor configuration
 COPY .docker/services/* /etc/supervisor/conf.d/

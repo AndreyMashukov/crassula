@@ -1,0 +1,12 @@
+language: php
+services:
+  - mysql
+before_script:
+  - mysql -u root -e "status;"
+  - mysql -u root -e 'CREATE DATABASE crassula;'
+  - mysql -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';"
+  - sh dev.sh
+php:
+  - '7.4'
+script:
+  - ant
