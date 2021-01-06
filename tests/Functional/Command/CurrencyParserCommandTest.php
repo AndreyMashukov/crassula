@@ -2,11 +2,15 @@
 
 namespace App\Tests\Command;
 
+use App\Component\DTO\ConverterRequest;
 use App\Component\DTO\Rate;
 use App\Entity\Rate as Entity;
 use App\Event\RateEvent;
+use App\Exception\CurrencyConverterException;
+use App\Service\CurrencyConverter;
 use Doctrine\ORM\EntityManagerInterface;
 use GuzzleHttp\Client;
+use Monolog\DateTimeImmutable;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Http\Message\ResponseInterface;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
@@ -26,11 +30,14 @@ class CurrencyParserCommandTest extends KernelTestCase
 
     private EntityManagerInterface $em;
 
+    private CurrencyConverter $converter;
+
     public function setUp()
     {
         self::bootKernel(['environment' => 'test']);
 
         $this->dispatcher = self::$container->get('event_dispatcher');
+        $this->converter  = self::$container->get('test.currency_converter');
         $this->httpClient = $this->createMock(Client::class);
 
         // Replace HTTP Client (Guzzle) in the Service Container (set Mock instead of real service).
@@ -113,5 +120,58 @@ class CurrencyParserCommandTest extends KernelTestCase
         ]);
 
         $this->assertEquals(6.5, $rate->getRate());
+
+        $converterRequest = new ConverterRequest(
+            'RUB',
+            'JPY',
+            100,
+            DateTimeImmutable::createFromFormat('Y-m-d', '2021-01-01')
+        );
+
+        // Check conversion.
+        $response = $this->converter->convert($converterRequest);
+
+        // 100 RUB = 140.84507042254 JPY
+        $this->assertEquals(140.84507042254, $response->getAmount());
+        $this->assertEquals($response->getRequest(), $converterRequest);
+
+        $converterRequest = new ConverterRequest(
+            'JPY',
+            'TJS',
+            100,
+            DateTimeImmutable::createFromFormat('Y-m-d', '2021-01-01')
+        );
+
+        // Check conversion.
+        $response = $this->converter->convert($converterRequest);
+
+        // 100 JPY = 140.84507042254 TJS
+        $this->assertEquals(10.923076923077, $response->getAmount());
+        $this->assertEquals($response->getRequest(), $converterRequest);
+
+        $converterRequest = new ConverterRequest(
+            'TJS',
+            'NOK',
+            100,
+            DateTimeImmutable::createFromFormat('Y-m-d', '2021-01-01')
+        );
+
+        // Check conversion.
+        $response = $this->converter->convert($converterRequest);
+
+        // 100 TJS = 140.84507042254 NOK
+        $this->assertEquals(75.581395348837, $response->getAmount());
+        $this->assertEquals($response->getRequest(), $converterRequest);
+
+        $this->expectException(CurrencyConverterException::class);
+        $this->expectExceptionMessage('Unable to convert, request data is not found.');
+
+        $converterRequest = new ConverterRequest(
+            'TJS',
+            'UNKNOWN',
+            100,
+            DateTimeImmutable::createFromFormat('Y-m-d', '2021-01-01')
+        );
+        $this->converter->convert($converterRequest);
     }
 }
