@@ -15,7 +15,7 @@ class ECBRate extends Rate
      *
      * @var string
      */
-    protected string $mainCurrency = 'EUR';
+    protected string $mainCurrency = self::CURRENCY_EUR;
 
     /**
      * @Serializer\XmlAttribute

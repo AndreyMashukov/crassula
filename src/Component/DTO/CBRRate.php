@@ -15,7 +15,7 @@ class CBRRate extends Rate
      *
      * @var string
      */
-    protected string $mainCurrency = 'RUB';
+    protected string $mainCurrency = self::CURRENCY_RUB;
 
     /**
      * @Serializer\XmlAttribute

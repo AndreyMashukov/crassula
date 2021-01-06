@@ -6,6 +6,10 @@ use App\Service\SourceNameInterface;
 
 abstract class Rate implements SourceNameInterface
 {
+    public const CURRENCY_RUB = 'RUB';
+
+    public const CURRENCY_EUR = 'EUR';
+
     /**
      * @var string
      */
