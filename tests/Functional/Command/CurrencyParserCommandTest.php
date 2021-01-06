@@ -3,7 +3,9 @@
 namespace App\Tests\Command;
 
 use App\Component\DTO\Rate;
+use App\Entity\Rate as Entity;
 use App\Event\RateEvent;
+use Doctrine\ORM\EntityManagerInterface;
 use GuzzleHttp\Client;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Http\Message\ResponseInterface;
@@ -22,6 +24,8 @@ class CurrencyParserCommandTest extends KernelTestCase
     /** @var Client|MockObject */
     private MockObject $httpClient;
 
+    private EntityManagerInterface $em;
+
     public function setUp()
     {
         self::bootKernel(['environment' => 'test']);
@@ -31,6 +35,17 @@ class CurrencyParserCommandTest extends KernelTestCase
 
         // Replace HTTP Client (Guzzle) in the Service Container (set Mock instead of real service).
         self::$container->set('test.guzzle', $this->httpClient);
+
+        $this->em = self::$container->get('doctrine.orm.default_entity_manager');
+
+        $this->em->beginTransaction();
+    }
+
+    public function tearDown(): void
+    {
+        $this->em->rollback();
+
+        parent::tearDown();
     }
 
     /**
@@ -38,6 +53,8 @@ class CurrencyParserCommandTest extends KernelTestCase
      */
     public function testShouldAllowToEmitRateEvents(): void
     {
+        $before = $this->em->getRepository(Entity::class)->count([]);
+
         // Hack, we will collect all events here!
         /** @var RateEvent[] $events */
         $events = [];
@@ -73,7 +90,28 @@ class CurrencyParserCommandTest extends KernelTestCase
         $output = $commandTester->getDisplay();
         $this->assertStringContainsString('Success.', $output);
 
-        $this->assertCount(2, $events);
+        $this->assertCount(5, $events);
         $this->assertInstanceOf(Rate::class, $events[0]->getRate());
+        $after = $this->em->getRepository(Entity::class)->count([]);
+
+        $this->assertEquals(4, $after - $before);
+
+        // Check correct Rate.
+
+        /** @var Entity $rate */
+        $rate = $this->em->getRepository(Entity::class)->findOneBy([
+            'mainCurrency'      => 'RUB',
+            'secondaryCurrency' => 'JPY',
+        ]);
+
+        $this->assertEquals(0.71, $rate->getRate());
+
+        /** @var Entity $rate */
+        $rate = $this->em->getRepository(Entity::class)->findOneBy([
+            'mainCurrency'      => 'RUB',
+            'secondaryCurrency' => 'TJS',
+        ]);
+
+        $this->assertEquals(6.5, $rate->getRate());
     }
 }

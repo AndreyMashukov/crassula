@@ -13,4 +13,25 @@
         <Name>Азербайджанский манат</Name>
         <Value>43,4819</Value>
     </Valute>
+    <Valute ID="R01535">
+        <NumCode>578</NumCode>
+        <CharCode>NOK</CharCode>
+        <Nominal>10</Nominal>
+        <Name>Норвежских крон</Name>
+        <Value>86,4478</Value>
+    </Valute>
+    <Valute ID="R01820">
+        <NumCode>392</NumCode>
+        <CharCode>JPY</CharCode>
+        <Nominal>100</Nominal>
+        <Name>Японских иен</Name>
+        <Value>71,6058</Value>
+    </Valute>
+    <Valute ID="R01670">
+        <NumCode>972</NumCode>
+        <CharCode>TJS</CharCode>
+        <Nominal>10</Nominal>
+        <Name>Таджикских сомони</Name>
+        <Value>65,2180</Value>
+    </Valute>
 </ValCurs>

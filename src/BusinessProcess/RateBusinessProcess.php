@@ -2,6 +2,8 @@
 
 namespace App\BusinessProcess;
 
+use App\Component\DTO\DateCollectionInterface;
+use App\Component\DTO\Rate;
 use App\Event\RateEvent;
 use App\Service\DeserializerProvider;
 use App\Service\SourceConfiguration;
@@ -35,12 +37,16 @@ class RateBusinessProcess
         $sourceName = $this->sourceConfiguration->getDefaultSource();
         $source     = $this->sourceProvider->getBySource($sourceName);
 
-        $ratesCollection = $this->deserializerProvider
+        $collection = $this->deserializerProvider
             ->getBySource($sourceName)
-            ->deserialize($source->getRaw())
-            ->getRates();
+            ->deserialize($source->getRaw());
 
-        foreach ($ratesCollection as $rate) {
+        /** @var Rate $rate */
+        foreach ($collection->getRates() as $rate) {
+            if ($collection instanceof DateCollectionInterface) {
+                $rate->setDate($collection->getDate());
+            }
+
             $this->dispatcher->dispatch(new RateEvent($rate));
         }
     }
