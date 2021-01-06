@@ -1,0 +1,107 @@
+{
+    "currentPage": 1,
+    "itemsPerPage": 10,
+    "totalItems": 32,
+    "data": [
+        {
+            "id": "<id>",
+            "source": "ecb",
+            "name": "AUD",
+            "mainCurrency": "EUR",
+            "secondaryCurrency": "AUD",
+            "rate": 1.5927,
+            "externalId": "AUD",
+            "date": "<date>"
+        },
+        {
+            "id": "<id>",
+            "source": "ecb",
+            "name": "BGN",
+            "mainCurrency": "EUR",
+            "secondaryCurrency": "BGN",
+            "rate": 1.9558,
+            "externalId": "BGN",
+            "date": "<date>"
+        },
+        {
+            "id": "<id>",
+            "source": "ecb",
+            "name": "BRL",
+            "mainCurrency": "EUR",
+            "secondaryCurrency": "BRL",
+            "rate": 6.5517,
+            "externalId": "BRL",
+            "date": "<date>"
+        },
+        {
+            "id": "<id>",
+            "source": "ecb",
+            "name": "CAD",
+            "mainCurrency": "EUR",
+            "secondaryCurrency": "CAD",
+            "rate": 1.5651,
+            "externalId": "CAD",
+            "date": "<date>"
+        },
+        {
+            "id": "<id>",
+            "source": "ecb",
+            "name": "CHF",
+            "mainCurrency": "EUR",
+            "secondaryCurrency": "CHF",
+            "rate": 1.0803,
+            "externalId": "CHF",
+            "date": "<date>"
+        },
+        {
+            "id": "<id>",
+            "source": "ecb",
+            "name": "CNY",
+            "mainCurrency": "EUR",
+            "secondaryCurrency": "CNY",
+            "rate": 7.9315,
+            "externalId": "CNY",
+            "date": "<date>"
+        },
+        {
+            "id": "<id>",
+            "source": "ecb",
+            "name": "CZK",
+            "mainCurrency": "EUR",
+            "secondaryCurrency": "CZK",
+            "rate": 26.227,
+            "externalId": "CZK",
+            "date": "<date>"
+        },
+        {
+            "id": "<id>",
+            "source": "ecb",
+            "name": "DKK",
+            "mainCurrency": "EUR",
+            "secondaryCurrency": "DKK",
+            "rate": 7.4387,
+            "externalId": "DKK",
+            "date": "<date>"
+        },
+        {
+            "id": "<id>",
+            "source": "ecb",
+            "name": "GBP",
+            "mainCurrency": "EUR",
+            "secondaryCurrency": "GBP",
+            "rate": 0.90333,
+            "externalId": "GBP",
+            "date": "<date>"
+        },
+        {
+            "id": "<id>",
+            "source": "ecb",
+            "name": "HKD",
+            "mainCurrency": "EUR",
+            "secondaryCurrency": "HKD",
+            "rate": 9.5136,
+            "externalId": "HKD",
+            "date": "<date>"
+        }
+    ]
+}

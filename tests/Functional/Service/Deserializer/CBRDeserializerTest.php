@@ -45,7 +45,7 @@ class CBRDeserializerTest extends KernelTestCase
         $this->assertEquals('RUB', $dto->getMainCurrency());
         $this->assertEquals('NOK', $dto->getSecondaryCurrency());
         $this->assertEquals(10, $dto->getNominal());
-        $this->assertEquals(86.0, $dto->getRate());
+        $this->assertEquals(0.11627906976744, $dto->getRate());
         $this->assertEquals('Норвежских крон', $dto->getName());
     }
 
@@ -76,7 +76,7 @@ class CBRDeserializerTest extends KernelTestCase
         $this->assertEquals('RUB', $first->getMainCurrency());
         $this->assertEquals('NOK', $first->getSecondaryCurrency());
         $this->assertEquals(10, $first->getNominal());
-        $this->assertEquals(86.0, $first->getRate());
+        $this->assertEquals(0.11627906976744, $first->getRate());
         $this->assertEquals('Норвежских крон', $first->getName());
 
         return $collection;

@@ -1,0 +1,107 @@
+{
+    "currentPage": 1,
+    "itemsPerPage": 10,
+    "totalItems": 34,
+    "data": [
+        {
+            "id": "<id>",
+            "source": "cbr",
+            "name": "Армянских драмов",
+            "mainCurrency": "RUB",
+            "secondaryCurrency": "AMD",
+            "rate": 7.1428571428571,
+            "externalId": "R01060",
+            "date": "<date>"
+        },
+        {
+            "id": "<id>",
+            "source": "cbr",
+            "name": "Австралийский доллар",
+            "mainCurrency": "RUB",
+            "secondaryCurrency": "AUD",
+            "rate": 0.017857142857143,
+            "externalId": "R01010",
+            "date": "<date>"
+        },
+        {
+            "id": "<id>",
+            "source": "cbr",
+            "name": "Азербайджанский манат",
+            "mainCurrency": "RUB",
+            "secondaryCurrency": "AZN",
+            "rate": 0.023255813953488,
+            "externalId": "R01020A",
+            "date": "<date>"
+        },
+        {
+            "id": "<id>",
+            "source": "cbr",
+            "name": "Болгарский лев",
+            "mainCurrency": "RUB",
+            "secondaryCurrency": "BGN",
+            "rate": 0.021739130434783,
+            "externalId": "R01100",
+            "date": "<date>"
+        },
+        {
+            "id": "<id>",
+            "source": "cbr",
+            "name": "Бразильский реал",
+            "mainCurrency": "RUB",
+            "secondaryCurrency": "BRL",
+            "rate": 0.071428571428571,
+            "externalId": "R01115",
+            "date": "<date>"
+        },
+        {
+            "id": "<id>",
+            "source": "cbr",
+            "name": "Белорусский рубль",
+            "mainCurrency": "RUB",
+            "secondaryCurrency": "BYN",
+            "rate": 0.035714285714286,
+            "externalId": "R01090B",
+            "date": "<date>"
+        },
+        {
+            "id": "<id>",
+            "source": "cbr",
+            "name": "Канадский доллар",
+            "mainCurrency": "RUB",
+            "secondaryCurrency": "CAD",
+            "rate": 0.017543859649123,
+            "externalId": "R01350",
+            "date": "<date>"
+        },
+        {
+            "id": "<id>",
+            "source": "cbr",
+            "name": "Швейцарский франк",
+            "mainCurrency": "RUB",
+            "secondaryCurrency": "CHF",
+            "rate": 0.012048192771084,
+            "externalId": "R01775",
+            "date": "<date>"
+        },
+        {
+            "id": "<id>",
+            "source": "cbr",
+            "name": "Китайский юань",
+            "mainCurrency": "RUB",
+            "secondaryCurrency": "CNY",
+            "rate": 0.090909090909091,
+            "externalId": "R01375",
+            "date": "<date>"
+        },
+        {
+            "id": "<id>",
+            "source": "cbr",
+            "name": "Чешских крон",
+            "mainCurrency": "RUB",
+            "secondaryCurrency": "CZK",
+            "rate": 0.29411764705882,
+            "externalId": "R01760",
+            "date": "<date>"
+        }
+    ]
+}

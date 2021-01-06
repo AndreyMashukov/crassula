@@ -3,15 +3,44 @@
 namespace App\Component\DTO;
 
 use DateTimeInterface;
+use JMS\Serializer\Annotation as Serializer;
+use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * @Serializer\ExclusionPolicy(Serializer\ExclusionPolicy::ALL)
+ */
 class ConverterRequest
 {
+    /**
+     * @Serializer\Expose
+     *
+     * @var string
+     *
+     * @Assert\NotBlank
+     */
     private string $currencyFrom;
 
+    /**
+     * @Serializer\Expose
+     *
+     * @var string
+     *
+     * @Assert\NotBlank
+     */
     private string $currencyTo;
 
+    /**
+     * @Serializer\Expose
+     *
+     * @var int
+     */
     private int $amount;
 
+    /**
+     * @Serializer\Expose
+     *
+     * @var DateTimeInterface
+     */
     private DateTimeInterface $date;
 
     public function __construct(string $currencyFrom, string $currencyTo, int $amount, DateTimeInterface $date)

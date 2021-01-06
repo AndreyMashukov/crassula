@@ -66,4 +66,14 @@ class CBRRate extends Rate
     {
         return SourceConfiguration::SOURCE_CBR;
     }
+
+    public function getRate(): float
+    {
+        return 1 / (parent::getRate() / $this->getNominal());
+    }
+
+    public function getFinalRate(): float
+    {
+        return $this->getRate();
+    }
 }

@@ -6,6 +6,11 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+
+        public:
+            pattern: ^/public
+            security: false
+
         main:
             anonymous: true
             lazy: true

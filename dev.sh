@@ -5,7 +5,7 @@ composer install
 bin/console doctrine:database:drop --force --if-exists
 bin/console doctrine:database:create
 bin/console doctrine:migrations:migrate -n
-#bin/console doctrine:fixtures:load -n
+bin/console doctrine:fixtures:load -n
 
 echo "######### PLEASE FOLLOW THIS INSTRICTIONS #######";
 echo "Please add to your: /etc/hosts file next line:";

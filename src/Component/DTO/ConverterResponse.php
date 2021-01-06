@@ -2,16 +2,31 @@
 
 namespace App\Component\DTO;
 
+use JMS\Serializer\Annotation as Serializer;
+
+/**
+ * @Serializer\ExclusionPolicy(Serializer\ExclusionPolicy::ALL)
+ */
 class ConverterResponse
 {
+    /**
+     * @Serializer\Expose
+     *
+     * @var ConverterRequest
+     */
     private ConverterRequest $request;
 
-    private float $amount;
+    /**
+     * @Serializer\Expose
+     *
+     * @var float
+     */
+    private float $result;
 
-    public function __construct(ConverterRequest $request, float $amount)
+    public function __construct(ConverterRequest $request, float $result)
     {
         $this->request = $request;
-        $this->amount  = $amount;
+        $this->result  = $result;
     }
 
     /**
@@ -25,8 +40,8 @@ class ConverterResponse
     /**
      * @return float
      */
-    public function getAmount(): float
+    public function getResult(): float
     {
-        return $this->amount;
+        return $this->result;
     }
 }
