@@ -1,0 +1,66 @@
+<project name="Mysql Json Serializer build" default="build" basedir=".">
+    <property environment="env"/>
+
+    <!-- Clean up -->
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+
+    <!-- Download dependencies -->
+    <target name="dependencies">
+        <exec executable="composer" failonerror="true">
+            <arg line="install --prefer-dist --quiet"/>
+        </exec>
+    </target>
+
+    <!-- Run code analysis -->
+    <target name="codeanalysis">
+        <sequential>
+            <!--<antcall target="extcheck"/>-->
+            <antcall target="phpmd"/>
+            <antcall target="phpcs"/>
+            <!--<antcall target="phpda"/>-->
+        </sequential>
+    </target>
+
+    <!-- Generate pmd.xml -->
+    <target name="phpmd">
+        <mkdir dir="${basedir}/build/logs"/>
+        <exec executable="vendor/bin/phpmd" failonerror="true">
+            <arg line="${basedir}/src xml md_ruleset.xml --exclude vendor --reportfile ${basedir}/build/logs/pmd.xml"/>
+        </exec>
+    </target>
+
+    <!-- Check code style -->
+    <target name="phpcs">
+        <exec executable="vendor/bin/php-cs-fixer" failonerror="true">
+            <arg line="fix --dry-run -v --using-cache=no --diff --config ${basedir}/.php_cs.dist"/>
+        </exec>
+    </target>
+
+    <!-- Run tests -->
+    <target name="tests">
+        <sequential>
+            <antcall target="phpunit"/>
+        </sequential>
+    </target>
+
+    <!-- Run unit tests -->
+    <target name="phpunit">
+        <exec executable="bin/phpunit" failonerror="true">
+            <arg line="-c phpunit.ci.xml"/>
+            <arg line="--no-coverage"/>
+            <arg line="--debug"/>
+        </exec>
+    </target>
+
+    <!-- Full build -->
+    <target name="build">
+        <sequential>
+            <antcall target="clean"/>
+            <antcall target="dependencies"/>
+            <antcall target="codeanalysis"/>
+            <antcall target="tests"/>
+        </sequential>
+    </target>
+</project>
