@@ -1,0 +1,9 @@
+{
+    "request": {
+        "currencyFrom": "USD",
+        "currencyTo": "EUR",
+        "amount": 100,
+        "date": "<date>"
+    },
+    "result": 81.49295085975062
+}

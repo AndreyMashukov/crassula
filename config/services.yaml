@@ -57,3 +57,7 @@ services:
     App\EventSubscriber\RateSubscriber:
         arguments:
             $debug: '%kernel.debug%'
+
+    Knp\Component\Pager\Paginator: ~
+
+    Knp\Component\Pager\PaginatorInterface: '@Knp\Component\Pager\Paginator'

@@ -111,7 +111,7 @@ class CurrencyParserCommandTest extends KernelTestCase
             'secondaryCurrency' => 'JPY',
         ]);
 
-        $this->assertEquals(0.71, $rate->getRate());
+        $this->assertEquals(1.4084507042254, $rate->getRate());
 
         /** @var Entity $rate */
         $rate = $this->em->getRepository(Entity::class)->findOneBy([
@@ -119,7 +119,7 @@ class CurrencyParserCommandTest extends KernelTestCase
             'secondaryCurrency' => 'TJS',
         ]);
 
-        $this->assertEquals(6.5, $rate->getRate());
+        $this->assertEquals(0.15384615384615, $rate->getRate());
 
         $converterRequest = new ConverterRequest(
             'RUB',
@@ -132,7 +132,7 @@ class CurrencyParserCommandTest extends KernelTestCase
         $response = $this->converter->convert($converterRequest);
 
         // 100 RUB = 140.84507042254 JPY
-        $this->assertEquals(140.84507042254, $response->getAmount());
+        $this->assertEquals(140.84507042254, $response->getResult());
         $this->assertEquals($response->getRequest(), $converterRequest);
 
         $converterRequest = new ConverterRequest(
@@ -146,7 +146,7 @@ class CurrencyParserCommandTest extends KernelTestCase
         $response = $this->converter->convert($converterRequest);
 
         // 100 JPY = 140.84507042254 TJS
-        $this->assertEquals(10.923076923077, $response->getAmount());
+        $this->assertEquals(10.923076923077, $response->getResult());
         $this->assertEquals($response->getRequest(), $converterRequest);
 
         $converterRequest = new ConverterRequest(
@@ -160,7 +160,7 @@ class CurrencyParserCommandTest extends KernelTestCase
         $response = $this->converter->convert($converterRequest);
 
         // 100 TJS = 140.84507042254 NOK
-        $this->assertEquals(75.581395348837, $response->getAmount());
+        $this->assertEquals(75.581395348837, $response->getResult());
         $this->assertEquals($response->getRequest(), $converterRequest);
 
         $this->expectException(CurrencyConverterException::class);

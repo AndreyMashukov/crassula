@@ -1,0 +1,20 @@
+{
+    "code": 400,
+    "message": "Validation Failed",
+    "errors": {
+        "children": {
+            "currencyFrom": {
+                "errors": [
+                    "This value should not be blank."
+                ]
+            },
+            "currencyTo": {
+                "errors": [
+                    "This value should not be blank."
+                ]
+            },
+            "amount": [],
+            "date": []
+        }
+    }
+}

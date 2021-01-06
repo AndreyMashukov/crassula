@@ -12,8 +12,10 @@
         "doctrine/doctrine-bundle": "^2.2",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.8",
+        "friendsofsymfony/rest-bundle": "^3.0",
         "guzzlehttp/guzzle": "^7.2",
         "jms/serializer-bundle": "^3.7",
+        "knplabs/knp-paginator-bundle": "^5.4",
         "phpdocumentor/reflection-docblock": "^5.2",
         "sensio/framework-extra-bundle": "^5.1",
         "spiral/roadrunner": "^1.9",
@@ -48,6 +50,7 @@
         "zendframework/zend-diactoros": "^2.2"
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
         "friendsofphp/php-cs-fixer": "^2.17",
         "phpmd/phpmd": "^2.9",
         "symfony/browser-kit": "^5.2",

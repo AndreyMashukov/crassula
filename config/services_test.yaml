@@ -13,3 +13,7 @@ services:
     test.guzzle: '@GuzzleHttp\Client'
 
     test.currency_converter: '@App\Service\CurrencyConverter'
+
+    test.date_factory: '@App\Service\DateFactory'
+
+    test.source_configuration: '@App\Service\SourceConfiguration'

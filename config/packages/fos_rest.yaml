@@ -1,0 +1,18 @@
+fos_rest:
+    body_listener: true
+    serializer:
+        serialize_null: true
+    format_listener:
+        rules:
+            - { path: '^/', priorities: ['json'], fallback_format: json, prefer_extension: false }
+    param_fetcher_listener: true
+    view:
+        view_response_listener: true
+        formats:
+            json: true
+    exception:
+        enabled: true
+        messages:
+            Symfony\Component\HttpKernel\Exception\HttpException: true
+            Symfony\Component\HttpKernel\Exception\BadRequestHttpException: true
+    versioning: true

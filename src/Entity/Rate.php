@@ -4,14 +4,19 @@ namespace App\Entity;
 
 use App\Repository\RateRepository;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(name="rate", indexes={
  *     @ORM\Index(columns={"rte_date", "rte_source", "rte_secondary", "rte_main"})
  * })
- *
  * @ORM\Entity(repositoryClass=RateRepository::class)
+ *
+ * @UniqueEntity(fields={"date", "source", "secondaryCurrency", "mainCurrency"})
+ *
+ * @Serializer\ExclusionPolicy(Serializer\ExclusionPolicy::ALL)
  */
 class Rate
 {
@@ -19,6 +24,8 @@ class Rate
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(name="rte_id", type="integer")
+     *
+     * @Serializer\Expose
      */
     private $id;
 
@@ -27,6 +34,8 @@ class Rate
      *
      * @Assert\NotBlank
      * @Assert\Length(max="255")
+     *
+     * @Serializer\Expose
      */
     private $source;
 
@@ -35,6 +44,8 @@ class Rate
      *
      * @Assert\NotBlank
      * @Assert\Length(max="255")
+     *
+     * @Serializer\Expose
      */
     private $name;
 
@@ -43,6 +54,8 @@ class Rate
      *
      * @Assert\NotBlank
      * @Assert\Length(max="3")
+     *
+     * @Serializer\Expose
      */
     private $mainCurrency;
 
@@ -51,6 +64,8 @@ class Rate
      *
      * @Assert\NotBlank
      * @Assert\Length(max="3")
+     *
+     * @Serializer\Expose
      */
     private $secondaryCurrency;
 
@@ -58,6 +73,8 @@ class Rate
      * @ORM\Column(name="rte_rate", type="float")
      *
      * @Assert\NotBlank
+     *
+     * @Serializer\Expose
      */
     private $rate;
 
@@ -66,6 +83,8 @@ class Rate
      *
      * @Assert\NotBlank
      * @Assert\Length(max="50")
+     *
+     * @Serializer\Expose
      */
     private $externalId;
 
@@ -73,6 +92,8 @@ class Rate
      * @ORM\Column(name="rte_date", type="date")
      *
      * @Assert\NotBlank
+     *
+     * @Serializer\Expose
      */
     private $date;
 

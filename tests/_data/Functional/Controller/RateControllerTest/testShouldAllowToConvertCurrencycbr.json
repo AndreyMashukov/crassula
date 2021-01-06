@@ -1,0 +1,9 @@
+{
+    "request": {
+        "currencyFrom": "RUB",
+        "currencyTo": "EUR",
+        "amount": 100,
+        "date": "<date>"
+    },
+    "result": 1.1111111111111
+}
